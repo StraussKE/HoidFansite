@@ -14,5 +14,17 @@ namespace Lab1_HoidFansite.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ViewResult History()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ViewResult Stories()
+        {
+            return View();
+        }
     }
 }
