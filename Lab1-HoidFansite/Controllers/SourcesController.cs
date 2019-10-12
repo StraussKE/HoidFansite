@@ -8,17 +8,17 @@ namespace Lab1_HoidFansite.Controllers
 {
     public class SourcesController : Controller
     {
-        public ViewResult Sources()
+        public IActionResult Sources()
         {
             return View();
         }
 
-        public ViewResult Books()
+        public IActionResult Books()
         {
             return View();
         }
 
-        public ViewResult Links()
+        public IActionResult Links()
         {
             return View();
         }
