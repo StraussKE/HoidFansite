@@ -21,6 +21,8 @@ namespace HoidFansite.Models
         public string PublicationDate { get; set; }
 
         [Required(ErrorMessage = "Please enter book ISBN")]
+        // checking RegExLib.com to see if there is a premade regex for this
+        // [RegularExpression("something here", ErrorMessage = "Please enter a valid ISBN")]
         public string Isbn { get; set; }
     }
 }
