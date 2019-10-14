@@ -1,6 +1,6 @@
 using System;
 
-namespace Lab1_HoidFansite.Models
+namespace HoidFansite.Models
 {
     public class ErrorViewModel
     {

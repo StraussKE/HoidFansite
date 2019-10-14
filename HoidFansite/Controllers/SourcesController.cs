@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Lab1_HoidFansite.Models;
 
-namespace Lab1_HoidFansite.Controllers
+namespace HoidFansite.Controllers
 {
-    public class HomeController : Controller
+    public class SourcesController : Controller
     {
-        public ViewResult Index()
+        public IActionResult Sources()
         {
             return View();
         }
 
-        [HttpGet]
-        public ViewResult History()
+        public IActionResult Books()
         {
             return View();
         }
 
-        [HttpGet]
-        public ViewResult Stories()
+        public IActionResult Links()
         {
             return View();
         }
