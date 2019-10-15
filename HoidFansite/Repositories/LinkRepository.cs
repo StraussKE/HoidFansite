@@ -17,9 +17,47 @@ namespace HoidFansite.Models
             }
         }
 
+        static LinkRepository()
+        {
+            AddDemoLinks();
+        }
+
         public static void AddLink(Link link)
         {
             links.Add(link);
         }
+
+        static void AddDemoLinks()
+        {
+            Link link = new Link()
+            {
+                Title = "Coppermind - Hoid",
+                Address = "https://coppermind.net/wiki/Hoid"
+            };
+            AddLink(link);
+
+            link = new Link()
+            {
+                Title = "Stormlight Archive wiki - Hoid",
+                Address = "https://stormlightarchive.fandom.com/wiki/Hoid"
+            };
+            AddLink(link);
+
+            link = new Link()
+            {
+                Title = "Mistborn wiki - Hoid",
+                Address = "https://mistborn.fandom.com/wiki/Hoid"
+            };
+            AddLink(link);
+
+            link = new Link()
+            {
+                Title = "Brandon Sanderson's Website",
+                Address = "https://brandonsanderson.com/"
+            };
+            AddLink(link);
+        }
     }
+
+
 }
