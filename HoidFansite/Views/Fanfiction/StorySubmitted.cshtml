@@ -8,6 +8,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
     <h1>Successful Submission</h1>
@@ -18,10 +19,10 @@
         <h3>Site Navigation:</h3>
         <a class=btn btn-primary" asp-action="Index">Home</a> <br />
         <a class=btn btn-primary" asp-action="History">History</a> <br />
-        <a class=btn btn-primary" asp-action="StoryList">Read Fanfiction</a> <br />
-        <a class=btn btn-primary" asp-action="StoryForm">Write Fanfiction</a> <br />
-        <a class=btn btn-primary" asp-action="/Sources/BookList">List of books</a><br />
-        <a class=btn btn-primary" asp-action="/Sources/LinkList">List of related links</a>
+        <a class=btn btn-primary" href="/Fanfiction/StoryList">Read Fanfiction</a> <br />
+        <a class=btn btn-primary" href="/Fanfiction/StoryForm">Write Fanfiction</a> <br />
+        <a class=btn btn-primary" href="/Sources/BookList">List of books</a><br />
+        <a class=btn btn-primary" href="/Sources/LinkList">List of related links</a>
     </nav>
 </body>
 </html>
