@@ -32,7 +32,7 @@ namespace HoidFansite.Controllers
             if (ModelState.IsValid)
             {
                 StoryRepository.AddStory(userStory);
-                return View("History", userStory);
+                return View("StorySubmitted", userStory);
             }
             else
             {

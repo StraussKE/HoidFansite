@@ -24,16 +24,17 @@
                     <th>Series</th>
                 </tr>
             </thead>
-            <tbody> <!--- Displays all boos contained within the repository -->
+            <tbody>
+                <!--- Displays all books contained within the repository -->
                 @foreach (HoidFansite.Models.Book b in Model)
                 {
-                <tr>
-                    <td>@b.Title</td>
-                    <td>@b.PublicationDate.ToShortDateString()</td>
-                    <td>@b.Author</td>
-                    <td>@b.Isbn</td>
-                    <td>@b.Series</td>
-                </tr>
+                    <tr>
+                        <td>@b.Title</td>
+                        <td>@b.PublicationDate.ToShortDateString()</td>
+                        <td>@b.Author</td>
+                        <td>@b.Isbn</td>
+                        <td>@b.Series</td>
+                    </tr>
                     <tr>
                         <td colspan="5">@b.Summary</td>
                     </tr>
@@ -47,5 +48,15 @@
             </tbody>
         </table>
     </div>
+
+    <nav>
+        <h3>Site Navigation:</h3>
+        <a class=btn btn-primary" asp-action="Index">Home</a> <br />
+        <a class=btn btn-primary" asp-action="History">History</a> <br />
+        <a class=btn btn-primary" asp-action="StoryList">Read Fanfiction</a> <br />
+        <a class=btn btn-primary" asp-action="StoryForm">Write Fanfiction</a> <br />
+        <a class=btn btn-primary" asp-action="/Sources/BookList">List of books</a><br />
+        <a class=btn btn-primary" asp-action="/Sources/LinkList">List of related links</a>
+    </nav>
 </body>
 </html>

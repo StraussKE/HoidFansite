@@ -6,6 +6,10 @@
     <RootNamespace>Lab1_HoidFansite</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Repositories\SiteNavigationcs.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
