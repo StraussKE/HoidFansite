@@ -15,16 +15,34 @@ namespace HoidFansite.Controllers
             return View();
         }
 
-        [HttpGet]
         public ViewResult History()
         {
             return View();
         }
 
         [HttpGet]
-        public ViewResult Stories()
+        public ViewResult StoryForm()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ViewResult StoryForm(UserStory userStory)
+        {
+            if (ModelState.IsValid)
+            {
+                StoryRepository.AddResponse(userStory);
+                return View("History", userStory);
+            }
+            else
+            {
+                //there is a validation error
+                return View();
+            }
+        }
+        public ViewResult StoryList()
+        {
+            return View(StoryRepository.Stories);
         }
     }
 }

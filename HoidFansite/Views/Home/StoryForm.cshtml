@@ -1,0 +1,42 @@
+﻿@model HoidFansite.Models.UserStory
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Your Story</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <div class="panel panel-success">
+        <div class="panel-heading text-ceenter"><h4>Your Story</h4></div>
+        <div class="panel-body">
+            <form class="p-a-1" asp-action="StoryForm" method="post">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label asp-for="Author">Your Name:</label>
+                    <input class="form-control" asp-for="Author" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Title">Story Title</label>
+                    <input class="form-control" asp-for="Title" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Body">Story Body</label>
+                    <input class="form-control" asp-for="Body" />
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" type="submit">
+                        Submit Story
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

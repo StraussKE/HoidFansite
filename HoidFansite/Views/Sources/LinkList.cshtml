@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<HoidFansite.Models.Link>
+@{
     Layout = null;
 }
 
@@ -15,12 +16,12 @@
         <h2>Here are some relevant links!</h2>
         <table class="table table-sm table-striped table-bordered">
             <tbody>
-                <!-- foreach (HoidFansite.Models.Link l in Model) -->
-                <!-- sample link until list is implemented -->
-                <tr>
-                    <td><a href="https://coppermind.net/wiki/Hoid">Coppermind - Hoid</a></td>
-                </tr>
-                
+                @foreach (HoidFansite.Models.Link l in Model)
+                {
+                    <tr>
+                        <td><a href="@l.Address">@l.Title</a></td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

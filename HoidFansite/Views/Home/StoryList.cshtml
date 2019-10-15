@@ -1,0 +1,42 @@
+﻿@model List<HoidFansite.Models.UserStory>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Fanfiction</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+</head>
+<body>
+    <div class="panel-body">
+        <h2>Fanfiction</h2>
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (HoidFansite.Models.UserStory s in Model)
+                {
+                    <tr>
+                        <td>@s.Title</td>
+                        <td>@s.Author</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@s.Body</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
