@@ -17,7 +17,7 @@ namespace HoidFansite.Models
             }
         }
 
-        public static void AddResponse(Link link)
+        public static void AddLink(Link link)
         {
             links.Add(link);
         }

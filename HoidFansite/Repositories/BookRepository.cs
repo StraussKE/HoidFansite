@@ -17,7 +17,7 @@ namespace HoidFansite.Models
             }
         }
 
-        public static void AddResponse(Book book)
+        public static void AddBook(Book book)
         {
             books.Add(book);
         }
