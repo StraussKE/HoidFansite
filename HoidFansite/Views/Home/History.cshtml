@@ -9,8 +9,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>History</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
+    <nav class="navbar navbar-dark">
+        <h4>Site Navigation:</h4>
+        <a class=btn btn-primary" href="/Home/Index">Home</a> <br />
+        <a class=btn btn-primary" href="/Home/History">History</a> <br />
+        <a class=btn btn-primary" href="/Fanfiction/StoryList">Read Fanfiction</a> <br />
+        <a class=btn btn-primary" href="/Fanfiction/StoryForm">Write Fanfiction</a> <br />
+        <a class=btn btn-primary" href="/Sources/BookList">List of books</a><br />
+        <a class=btn btn-primary" href="/Sources/LinkList">List of related links</a>
+    </nav>
     <h1>History</h1>
     <ul>
         <li>
@@ -75,15 +85,5 @@
         Credit for this history goes to user Radhil, in
         <a href="https://scifi.stackexchange.com/questions/119871/how-many-appearances-of-hoid-have-there-been">this post</a>
     </i>
-
-    <nav>
-        <h3>Site Navigation:</h3>
-        <a class=btn btn-primary" asp-action="Index">Home</a> <br />
-        <a class=btn btn-primary" asp-action="History">History</a> <br />
-        <a class=btn btn-primary" href="/Fanfiction/StoryList">Read Fanfiction</a> <br />
-        <a class=btn btn-primary" href="/Fanfiction/StoryForm">Write Fanfiction</a> <br />
-        <a class=btn btn-primary" href="/Sources/BookList">List of books</a><br />
-        <a class=btn btn-primary" href="/Sources/LinkList">List of related links</a>
-    </nav>
 </body>
 </html>
