@@ -33,22 +33,25 @@ namespace HoidFansite.Controllers
             return View(StoryRepository.Stories);
         }
 
-        public IActionResult AddReview(string id)
+        public IActionResult ReviewForm(string id)
         {
             return View("ReviewForm", HttpUtility.HtmlDecode(id));
         }
 
+        [HttpPost]
         public RedirectToActionResult ReviewForm(string id,
                                                  string title,
                                                  string review,
-                                                 string author)
+                                                 string author,
+                                                 int rating)
         {
             UserStory fanfic = StoryRepository.GetStoryByID(id);
             fanfic.Reviews.Add(new UserReview()
             {
                 Author = author,
                 Body = review,
-                Title = title
+                Title = title,
+                Rating = rating
             });
             return RedirectToAction("StoryList");
         }

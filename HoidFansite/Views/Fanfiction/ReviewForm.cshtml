@@ -5,22 +5,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add a Review</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>Write a Review</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
-    <h1>Review for <em> @Model</em></h1>
+    <nav class="navbar navbar-dark">
+        <h4>Site Navigation:</h4>
+        <a class=btn btn-primary" href="/Home/Index">Home</a> <br />
+        <a class=btn btn-primary" href="/Home/History">History</a> <br />
+        <a class=btn btn-primary" href="/Fanfiction/StoryList">Read Fanfiction</a> <br />
+        <a class=btn btn-primary" href="/Fanfiction/StoryForm">Write Fanfiction</a> <br />
+        <a class=btn btn-primary" href="/Sources/BookList">List of books</a><br />
+        <a class=btn btn-primary" href="/Sources/LinkList">List of related links</a>
+    </nav>
 
-    <form method="post">
-        <label for="title">Review Title</label><br />
-        <input name="title" /><br />
-
-        <label for="author">Your Name</label><br />
-        <input name="author" /><br />
-
-        <label for="review">Your Review</label><br />
-        <textarea type="review" name="body"></textarea><br />
-
-        <input type="submit" value="Enter" />
-    </form>
+    <h1>Review for story #@Model</h1>
+    <div class="panel panel-success">
+        <div class="panel-heading text-ceenter"><h4>Your Story</h4></div>
+        <div class="panel-body">
+            <form class="p-a-1" asp-action="ReviewForm" method="post">
+                <div class="form-group">
+                    <label for="title">Review Title</label><br />
+                    <input name="title" /><br />
+                </div>
+                <div class="form-group">
+                    <label for="author">Your Name</label><br />
+                    <input name="author" /><br />
+                </div>
+                <div class="form-group">
+                    <label for="review">Your Review</label><br />
+                    <textarea type="text" name="review"></textarea><br />
+                </div>
+                <div class="form-group">
+                    <label for="rating">Your Rating</label><br />
+                    <input type="radio" name="rating" value="1" />1 star<br />
+                    <input type="radio" name="rating" value="2" />2 star<br />
+                    <input type="radio" name="rating" value="3" />3 star<br />
+                    <input type="radio" name="rating" value="4" />4 star<br />
+                    <input type="radio" name="rating" value="5" checked />5 star<br />
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" type="submit">
+                        Submit Review
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html> 

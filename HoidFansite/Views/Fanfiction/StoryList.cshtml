@@ -45,7 +45,10 @@
                         <td colspan="3">@s.Body</td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="2">
+                            Average rating: @s.GetAvgRating()
+                        </td>
+                        <td>
                             <a asp-action="ReviewForm" asp-route-id="@s.StoryID.ToString()">Review this story!</a>
                         </td>
                     </tr>
