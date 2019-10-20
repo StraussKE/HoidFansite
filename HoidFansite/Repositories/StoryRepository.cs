@@ -21,5 +21,11 @@ namespace HoidFansite.Models
         {
             stories.Add(story);
         }
+
+        public static UserStory GetStoryByID(string storyID)
+        {
+            UserStory story = stories.Find(s => s.StoryID.ToString() == storyID);
+            return story;
+        }
     }
 }

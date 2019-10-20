@@ -10,6 +10,7 @@ namespace HoidFansite.Models
     public class UserStory
     {
         public static int nextStoryID = 0;
+        private int storyRating;
 
         private List<UserReview> reviews = new List<UserReview>();
         public string Author { get; set; }
@@ -23,5 +24,7 @@ namespace HoidFansite.Models
         public int StoryID { get; set; } = nextStoryID++;
 
         public List<UserReview> Reviews { get { return reviews; } }
+
+        
     }
 }

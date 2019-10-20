@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using HoidFansite.Models;
+using System.Web;
 
 namespace HoidFansite.Controllers
 {
@@ -28,6 +31,26 @@ namespace HoidFansite.Controllers
         public ViewResult StoryList()
         {
             return View(StoryRepository.Stories);
+        }
+
+        public IActionResult AddReview(string id)
+        {
+            return View("ReviewForm", HttpUtility.HtmlDecode(id));
+        }
+
+        public RedirectToActionResult ReviewForm(string id,
+                                                 string title,
+                                                 string review,
+                                                 string author)
+        {
+            UserStory fanfic = StoryRepository.GetStoryByID(id);
+            fanfic.Reviews.Add(new UserReview()
+            {
+                Author = author,
+                Body = review,
+                Title = title
+            });
+            return RedirectToAction("StoryList");
         }
 
         /*public ViewResult ReviewList(UserStory story)
