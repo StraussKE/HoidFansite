@@ -30,7 +30,6 @@
                 <tr>
                     <th>Title</th>
                     <th>Author</th>
-                    <th>Story ID</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,21 +38,23 @@
                     <tr>
                         <td>@s.Title</td>
                         <td>@s.Author</td>
-                        <td>@s.StoryID</td>
                     </tr>
                     <tr>
-                        <td colspan="3">@s.Body</td>
+                        <td colspan="2">@s.Body</td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td>
                             Average rating: @s.GetAvgRating()
                         </td>
                         <td>
                             <a asp-action="ReviewForm" asp-route-id="@s.StoryID.ToString()">Review this story!</a>
                         </td>
+                        <!--- <td>
+                             <a asp-action="ReviewList" asp-route-id="@s.StoryID.ToString()">Read Reviews!</a>
+                        </td> -->
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="2">
                             <table class="table table-sm table-bordered">
                                 <thead>
                                     <tr>

@@ -82,8 +82,7 @@ namespace HoidFansite.Models
                           "existence and move to Elantris.  Elantris, where he could live in bliss, rule in wisdom, and be worshipped " +
                           "for eternity.\n" +
                           "Eternity ended ten years ago.",
-                WheresHoid = "Hoid is not named in his appearance in this book. He is the bandaged begger, helping smuggle weapons " +
-                             "Elantris."
+                WheresHoid = "Hoid is the bandaged begger, helping smuggle weapons into Elantris."
             };
             books.Add(book);
         }

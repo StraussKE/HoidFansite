@@ -8,6 +8,13 @@ namespace HoidFansite.Controllers
 {
     public class FanfictionController : Controller
     {
+        public IActionResult StoryList()
+        {
+            List<UserStory> stories = StoryRepository.Stories;
+            stories.Sort((s1, s2) => string.Compare(s1.Title, s2.Title, StringComparison.Ordinal));
+            return View(stories);
+        }
+
         [HttpGet]
         public ViewResult StoryForm()
         {
@@ -27,10 +34,6 @@ namespace HoidFansite.Controllers
                 //there is a validation error
                 return View();
             }
-        }
-        public ViewResult StoryList()
-        {
-            return View(StoryRepository.Stories);
         }
 
         public IActionResult ReviewForm(string id)
