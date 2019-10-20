@@ -7,11 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HoidFansite.Models
 {
-    public class UserStory
+    public class UserReview
     {
-        public static int nextStoryID = 0;
-
-        private List<UserReview> reviews = new List<UserReview>();
         public string Author { get; set; }
 
         [Required(ErrorMessage = "Please enter story title")]
@@ -20,8 +17,6 @@ namespace HoidFansite.Models
         [Required(ErrorMessage = "The story cannot be blank")]
         public string Body { get; set; }
 
-        public int StoryID { get; set; } = nextStoryID++;
-
-        public List<UserReview> Reviews { get { return reviews; } }
+        public int Rating { get; set; }
     }
 }

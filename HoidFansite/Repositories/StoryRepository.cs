@@ -16,7 +16,7 @@ namespace HoidFansite.Models
                 return stories;
             }
         }
-
+        
         public static void AddStory(UserStory story)
         {
             stories.Add(story);

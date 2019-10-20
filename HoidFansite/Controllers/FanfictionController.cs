@@ -29,5 +29,15 @@ namespace HoidFansite.Controllers
         {
             return View(StoryRepository.Stories);
         }
+
+        /*public ViewResult ReviewList(UserStory story)
+        {
+            return View(ReviewList.UserReview.Where(review => review.StoryID == story.StoryID));
+        }
+
+        /*public ViewResult ReviewList(User user)
+        {
+            return View(ReviewList.UserReview.Where(review => review.UserID == story.UserID));
+        }*/
     }
 }
