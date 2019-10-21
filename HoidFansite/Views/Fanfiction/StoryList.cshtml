@@ -55,11 +55,12 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <table class="table table-sm table-bordered">
+                            <table class="table table-sm table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Review Title</th>
                                         <th>Reviewer</th>
+                                        <th>Rating</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,9 +69,10 @@
                                         <tr>
                                             <td>@r.Title</td>
                                             <td>@r.Author</td>
+                                            <td>@r.Rating</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">@r.Body</td>
+                                            <td colspan="3">@r.Body</td>
                                         </tr>
                                     }
                                 </tbody>
