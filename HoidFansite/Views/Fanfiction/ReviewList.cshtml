@@ -1,7 +1,57 @@
-﻿
+﻿@model string
+
 @{
-    ViewData["Title"] = "ReviewList";
+    Layout = null;
 }
 
-<h1>ReviewList</h1>
+@{UserStory fanfic = HoidFansite.Models.StoryRepository.GetStoryByID(Model);}
 
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Fanfiction</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+</head>
+<body>
+    <nav class="navbar navbar-dark">
+        <h4>Site Navigation:</h4>
+        <a class=btn btn-primary" href="/Home/Index">Home</a> <br />
+        <a class=btn btn-primary" href="/Home/History">History</a> <br />
+        <a class=btn btn-primary" href="/Fanfiction/StoryList">Read Fanfiction</a> <br />
+        <a class=btn btn-primary" href="/Fanfiction/StoryForm">Write Fanfiction</a> <br />
+        <a class=btn btn-primary" href="/Sources/BookList">List of books</a><br />
+        <a class=btn btn-primary" href="/Sources/LinkList">List of related links</a>
+    </nav>
+    <h1>Reviews for <u>@fanfic.Title</u></h1>
+    <div class="panel-body">
+        <h2>Fanfiction</h2>
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Review Title</th>
+                    <th>Reviewer</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (HoidFansite.Models.UserReview r in fanfic.Reviews)
+                 {
+                    <tr>
+                        <td>@r.Title</td>
+                        <td>@r.Author</td>
+                        <td>@r.Rating</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">@r.Body</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</body>

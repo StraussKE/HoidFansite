@@ -16,23 +16,23 @@ namespace HoidFansite.Controllers
         }
 
         [HttpGet]
-        public ViewResult StoryForm()
+        public IActionResult StoryForm()
         {
             return View();
         }
 
         [HttpPost]
-        public ViewResult StoryForm(UserStory userStory)
+        public RedirectToActionResult StoryForm(UserStory userStory)
         {
             if (ModelState.IsValid)
             {
                 StoryRepository.AddStory(userStory);
-                return View("StorySubmitted", userStory);
+                return RedirectToAction("StoryList", userStory);
             }
             else
             {
                 //there is a validation error
-                return View();
+                return RedirectToAction("StoryList");
             }
         }
 
@@ -57,6 +57,11 @@ namespace HoidFansite.Controllers
                 Rating = rating
             });
             return RedirectToAction("StoryList");
+        }
+
+        public IActionResult ReviewList(string id)
+        {
+            return View("ReviewList", HttpUtility.HtmlDecode(id));
         }
 
         /*public ViewResult ReviewList(UserStory story)

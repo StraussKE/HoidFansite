@@ -28,7 +28,7 @@
         <table class="table table-sm table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Title</th>
+                    <th colspan="2">Title</th>
                     <th>Author</th>
                 </tr>
             </thead>
@@ -36,11 +36,11 @@
                 @foreach (HoidFansite.Models.UserStory s in Model)
                 {
                     <tr>
-                        <td>@s.Title</td>
+                        <td colspan="2">@s.Title</td>
                         <td>@s.Author</td>
                     </tr>
                     <tr>
-                        <td colspan="2">@s.Body</td>
+                        <td colspan="3">@s.Body</td>
                     </tr>
                     <tr>
                         <td>
@@ -49,35 +49,12 @@
                         <td>
                             <a asp-action="ReviewForm" asp-route-id="@s.StoryID.ToString()">Review this story!</a>
                         </td>
-                        <!--- <td>
-                             <a asp-action="ReviewList" asp-route-id="@s.StoryID.ToString()">Read Reviews!</a>
-                        </td> -->
+                        <td>
+                            <a asp-action="ReviewList" asp-route-id="@s.StoryID.ToString()">Read Reviews!</a>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <table class="table table-sm table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Review Title</th>
-                                        <th>Reviewer</th>
-                                        <th>Rating</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (HoidFansite.Models.UserReview r in s.Reviews)
-                                    {
-                                        <tr>
-                                            <td>@r.Title</td>
-                                            <td>@r.Author</td>
-                                            <td>@r.Rating</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3">@r.Body</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </td>
+                        <td colspan="3"></td>
                     </tr>
                 }
             </tbody>
