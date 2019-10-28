@@ -1,19 +1,19 @@
 ﻿@model String
 @{
-    Layout = "_myLayout";
+    Layout = "_FormLayout";
     string storyTitle = HoidFansite.Models.StoryRepository.GetStoryByID(Model).Title;
     ViewBag.Title = "Review: " + storyTitle;
 }
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- _myLayout -->
+    <!-- _Layout -->
 </head>
 <body>
     <div class="panel panel-success">
         <div class="panel-heading text-ceenter"><h4>Your Story</h4></div>
         <div class="panel-body">
-            <form class="p-a-1" asp-action="ReviewForm" method="post">
+            <form class="p-1" asp-action="ReviewForm" method="post">
                 <div class="form-group">
                     <label for="title">Review Title</label><br />
                     <input class="form-control" name="title" /><br />
@@ -26,16 +26,31 @@
                     <label for="review">Your Review</label><br />
                     <textarea class="form-control" type="text" name="review"></textarea><br />
                 </div>
-                <div class="form-group">
-                    <label for="rating">Your Rating</label><br />
-                    <input type="radio" name="rating" value="1" />1 star<br />
-                    <input type="radio" name="rating" value="2" />2 star<br />
-                    <input type="radio" name="rating" value="3" />3 star<br />
-                    <input type="radio" name="rating" value="4" />4 star<br />
-                    <input type="radio" name="rating" value="5" checked />5 star<br />
+                <div class="form-check-label">
+                    <label for="rating">Select a rating!</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="rating" type="radio" id="rating1" value="1">
+                    <label class="form-check-label" for="rating1">1 star</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="rating" type="radio" id="rating2" value="2">
+                    <label class="form-check-label" for="rating">2 star</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="rating" type="radio" id="rating3" value="3" checked>
+                    <label class="form-check-label" for="rating1">3 star</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="rating" type="radio" id="rating4" value="4">
+                    <label class="form-check-label" for="rating4">4 star</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="rating" type="radio" id="rating5" value="5">
+                    <label class="form-check-label" for="rating5">5 star</label>
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary btn-submit" type="submit">
                         Submit Review
                     </button>
                 </div>

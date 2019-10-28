@@ -1,7 +1,7 @@
 ﻿@model string
 
 @{
-    Layout = "_myLayout";
+    Layout = "_Layout";
     UserStory fanfic = HoidFansite.Models.StoryRepository.GetStoryByID(Model);
     ViewBag.Title = "Reviews:" + fanfic.Title;
 }
@@ -10,7 +10,7 @@
 
 <html>
 <head>
-    <!-- _myLayout -->
+    <!-- _Layout -->
 </head>
 <body>
     <div class="panel-body">

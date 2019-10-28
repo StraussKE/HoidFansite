@@ -1,6 +1,6 @@
 ﻿@model HoidFansite.Models.UserStory
 @{
-    Layout = "_myLayout";
+    Layout = "_FormLayout";
     ViewBag.Title = "Submit Fanfiction";
 }
 
@@ -8,13 +8,13 @@
 
 <html>
 <head>
-    <!-- _myLayout -->
+    <!-- _Layout -->
 </head>
 <body>
     <div class="panel panel-success">
         <div class="panel-heading text-ceenter"><h4>Your Story</h4></div>
         <div class="panel-body">
-            <form class="p-a-1" asp-action="StoryForm" method="post">
+            <form class="p-1" asp-action="StoryForm" method="post">
                 <div asp-validation-summary="All"></div>
                 <div class="form-group">
                     <label asp-for="Author">Your Name:</label>
@@ -29,7 +29,7 @@
                     <input class="form-control" asp-for="Body" />
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary btn-submit" type="submit">
                         Submit Story
                     </button>
                 </div>

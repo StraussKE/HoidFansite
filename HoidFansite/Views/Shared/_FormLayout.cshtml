@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <style>
+        .scaledForm{
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-dark">
@@ -16,8 +22,7 @@
         <a class=btn btn-primary" href="/Sources/BookList">List of books</a><br />
         <a class=btn btn-primary" href="/Sources/LinkList">List of related links</a>
     </nav>
-    <div>
-        <h1>@ViewBag.Title</h1>
+    <div class="scaledForm" >
         @RenderBody()
     </div>
 </body>
