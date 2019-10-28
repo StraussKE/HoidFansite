@@ -3,12 +3,23 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <style>
-        .scaledForm{
+        .scaledForm {
             margin-left: 10%;
             margin-right: 10%;
+            border: double 3px midnightblue;
+            background-color: lightskyblue;
+        }
+        .panel{
+            margin: 2%;
+        }
+        .form-control{
+            background-color: lightgrey;
+        }
+        .btn-submit {
+            background-color: dimgrey;
         }
     </style>
 </head>
@@ -22,7 +33,7 @@
         <a class=btn btn-primary" href="/Sources/BookList">List of books</a><br />
         <a class=btn btn-primary" href="/Sources/LinkList">List of related links</a>
     </nav>
-    <div class="scaledForm" >
+    <div class="scaledForm">
         @RenderBody()
     </div>
 </body>

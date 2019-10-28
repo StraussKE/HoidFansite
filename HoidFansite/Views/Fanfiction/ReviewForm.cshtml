@@ -2,7 +2,7 @@
 @{
     Layout = "_FormLayout";
     string storyTitle = HoidFansite.Models.StoryRepository.GetStoryByID(Model).Title;
-    ViewBag.Title = "Review: " + storyTitle;
+    ViewData["Title"] = "Review: " + storyTitle;
 }
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="panel panel-success">
-        <div class="panel-heading text-ceenter"><h4>Your Story</h4></div>
+        <div class="panel-heading text-ceenter"><h4>@ViewData["Title"]</h4></div>
         <div class="panel-body">
             <form class="p-1" asp-action="ReviewForm" method="post">
                 <div class="form-group">
