@@ -31,6 +31,7 @@ namespace HoidFansite.Controllers
         // this is an example of hard coding a StatusCodeResult and returning NotFound
         public StatusCodeResult DemoNotFound() => NotFound();
 
+        // this is an example of an ActionResult that has different possible results based on what happens in the controller
         public ActionResult DemoValidateAddition(Book book)
         {
             if (book.Author != "Brandon Sanderson")
@@ -42,8 +43,9 @@ namespace HoidFansite.Controllers
             if (ModelState.IsValid)
             {
                 BookRepository.AddBook(book);
-                return RedirectToAction("Book")
+                return RedirectToAction("Index");
             }
+            return View("History");
         }
     }
 }
