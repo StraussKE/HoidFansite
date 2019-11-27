@@ -27,7 +27,7 @@ namespace HoidFansite.Controllers
             if (ModelState.IsValid)
             {
                 StoryRepository.AddStory(userStory);
-                return RedirectToAction("StoryList", userStory);
+                return RedirectToAction("StoryList");
             }
             else
             {
