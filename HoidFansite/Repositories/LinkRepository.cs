@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HoidFansite.Models;
 
-namespace HoidFansite.Models
+namespace HoidFansite.Repositories
 {
     public class LinkRepository
     {
         private static List<Link> links = new List<Link>();
 
-        public static List<Link> Links
-        {
-            get
-            {
-                return links;
-            }
-        }
+        public static List<Link> Links { get; }
 
         static LinkRepository()
         {

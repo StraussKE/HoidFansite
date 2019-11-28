@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HoidFansite.Models;
 
-namespace HoidFansite.Models
+namespace HoidFansite.Repositories
 {
     public class BookRepository
     {
         private static List<Book> books = new List<Book>();
 
-        public static List<Book> Books
-        {
-            get
-            {
-                return books;
-            }
-        }
+        public static List<Book> Books { get { return books; } }
 
         static BookRepository()
         {

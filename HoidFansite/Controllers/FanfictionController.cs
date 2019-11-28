@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using HoidFansite.Models;
 using System.Web;
+using HoidFansite.Repositories;
 
 namespace HoidFansite.Controllers
 {
     public class FanfictionController : Controller
     {
+        static IStoryRepository storyRepo;
+
+        public FanfictionController(IStoryRepository r)
+        {
+            storyRepo = r;
+        }
+
         public IActionResult StoryList()
         {
-            List<UserStory> stories = StoryRepository.Stories;
+            List<UserStory> stories = storyRepo.Stories;
             stories.Sort((s1, s2) => string.Compare(s1.Title, s2.Title, StringComparison.Ordinal));
             return View(stories);
         }
@@ -26,7 +34,7 @@ namespace HoidFansite.Controllers
         {
             if (ModelState.IsValid)
             {
-                StoryRepository.AddStory(userStory);
+                storyRepo.AddStory(userStory);
                 return RedirectToAction("StoryList");
             }
             else
@@ -38,7 +46,8 @@ namespace HoidFansite.Controllers
 
         public IActionResult ReviewForm(string id)
         {
-            return View("ReviewForm", HttpUtility.HtmlDecode(id));
+            UserStory fanfic = storyRepo.GetStoryByID(id);
+            return View(fanfic);
         }
 
         [HttpPost]
@@ -48,7 +57,7 @@ namespace HoidFansite.Controllers
                                                  string author,
                                                  int rating)
         {
-            UserStory fanfic = StoryRepository.GetStoryByID(id);
+            UserStory fanfic = storyRepo.GetStoryByID(id);
             fanfic.Reviews.Add(new UserReview()
             {
                 Author = author,
@@ -61,17 +70,7 @@ namespace HoidFansite.Controllers
 
         public IActionResult ReviewList(string id)
         {
-            return View("ReviewList", HttpUtility.HtmlDecode(id));
+            return View("ReviewList", storyRepo.GetStoryByID(id));
         }
-
-        /*public ViewResult ReviewList(UserStory story)
-        {
-            return View(ReviewList.UserReview.Where(review => review.StoryID == story.StoryID));
-        }
-
-        /*public ViewResult ReviewList(User user)
-        {
-            return View(ReviewList.UserReview.Where(review => review.UserID == story.UserID));
-        }*/
     }
 }

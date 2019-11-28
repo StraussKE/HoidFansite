@@ -2,38 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HoidFansite.Models;
 
-namespace HoidFansite.Models
+namespace HoidFansite.Repositories
 {
-    public class FakeStoryRepository
+    public class FakeStoryRepository : IStoryRepository
     {
-        private static List<UserStory> stories = new List<UserStory>();
+        static private List<UserStory> stories = new List<UserStory>();
 
-        public static List<UserStory> Stories
-        {
-            get
-            {
-                return stories;
-            }
-        }
+        public List<UserStory> Stories { get { return stories; } }
 
-        public static void AddStory(UserStory story)
+        public void AddStory(UserStory story)
         {
             stories.Add(story);
         }
 
-        static FakeStoryRepository()
+        public FakeStoryRepository()
         {
-            AddDemoStories();
+            if (stories.Count() == 0)
+                AddDemoStories();
         }
 
-        public static UserStory GetStoryByID(string storyID)
+        public UserStory GetStoryByID(string storyID)
         {
             UserStory story = stories.Find(s => s.StoryID.ToString() == storyID);
             return story;
         }
 
-        static void AddDemoStories()
+        private void AddDemoStories()
         {
             UserStory story = new UserStory()
             {

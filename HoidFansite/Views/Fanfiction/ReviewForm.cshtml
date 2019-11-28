@@ -1,8 +1,7 @@
-﻿@model String
+﻿@model UserStory
 @{
     Layout = "_FormLayout";
-    string storyTitle = HoidFansite.Models.StoryRepository.GetStoryByID(Model).Title;
-    ViewData["Title"] = "Review: " + storyTitle;
+    ViewData["Title"] = "Review: " + Model.Title;
 }
 <!DOCTYPE html>
 <html>
