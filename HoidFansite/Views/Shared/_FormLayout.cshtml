@@ -4,7 +4,6 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <style>
         .scaledForm {
             margin-left: 10%;
@@ -12,12 +11,15 @@
             border: double 3px midnightblue;
             background-color: lightskyblue;
         }
-        .panel{
+
+        .panel {
             margin: 2%;
         }
-        .form-control{
+
+        .form-control {
             background-color: lightgrey;
         }
+
         .btn-submit {
             background-color: dimgrey;
         }
@@ -46,10 +48,6 @@
               crossorigin="anonymous"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
-    <div>
-        <h1>@ViewBag.Title</h1>
-        @RenderBody()
-    </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">

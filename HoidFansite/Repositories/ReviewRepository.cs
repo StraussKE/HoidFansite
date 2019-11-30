@@ -8,19 +8,24 @@ namespace HoidFansite.Repositories
 {
     public class ReviewRepository
     {
-        private static List<UserReview> userReviews = new List<UserReview>();
+        static private List<UserReview> reviews = new List<UserReview>();
 
-        public static List<UserReview> Reviews
+        static public void AddReview(UserReview Review)
         {
-            get
-            {
-                return userReviews;
-            }
+            reviews.Add(Review);
         }
 
-        public static void AddReview(UserReview review)
+        public List<UserReview> GetReviewsByStory(int ID)
         {
-            userReviews.Add(review);
+            List< UserReview> storyMatches = new List<UserReview>();
+            foreach (UserReview r in reviews)
+            {
+                if(r.StoryID == ID)
+                {
+                    storyMatches.Add(r);
+                }
+            }
+            return storyMatches;
         }
     }
 }

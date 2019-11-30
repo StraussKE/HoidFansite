@@ -30,41 +30,36 @@ namespace HoidFansite.Controllers
         }
 
         [HttpPost]
-        public RedirectToActionResult StoryForm(UserStory userStory)
+        public IActionResult StoryForm(UserStory userStory)
         {
             if (ModelState.IsValid)
             {
+                userStory.StoryID = storyRepo.Stories.Count;
                 storyRepo.AddStory(userStory);
                 return RedirectToAction("StoryList");
             }
             else
             {
                 //there is a validation error
-                return RedirectToAction("StoryList");
+                return View("StoryForm");
             }
         }
 
         public IActionResult ReviewForm(string id)
         {
-            UserStory fanfic = storyRepo.GetStoryByID(id);
-            return View(fanfic);
+            ViewBag.Fanfic = new UserStory();
+            ViewBag.Fanfic = storyRepo.GetStoryByID(id);
+            return View();
         }
 
         [HttpPost]
-        public RedirectToActionResult ReviewForm(string id,
-                                                 string title,
-                                                 string review,
-                                                 string author,
-                                                 int rating)
+        public RedirectToActionResult ReviewForm(UserReview newReview)
         {
-            UserStory fanfic = storyRepo.GetStoryByID(id);
-            fanfic.Reviews.Add(new UserReview()
+            if (ModelState.IsValid)
             {
-                Author = author,
-                Body = review,
-                Title = title,
-                Rating = rating
-            });
+                newReview.ReviewCreated = DateTime.Now;
+                ReviewRepository.AddReview(newReview);
+            }
             return RedirectToAction("StoryList");
         }
 

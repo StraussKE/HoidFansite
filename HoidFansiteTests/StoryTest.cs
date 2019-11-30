@@ -1,4 +1,5 @@
-﻿
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using HoidFansite.Controllers;
 using HoidFansite.Models;
 using HoidFansite.Repositories;
@@ -9,7 +10,7 @@ namespace HoidFansite.Tests
     public class StoryTest
     {
         [Fact]
-        public void AddStoryTest()
+        public void StoryFormTest()
         {
             // Arrange
             var repo = new FakeStoryRepository();
@@ -34,6 +35,27 @@ namespace HoidFansite.Tests
         }
 
         [Fact]
-        public void 
+        public void StoryListSortTest()
+        {
+            // Arrange
+            var repo = new FakeStoryRepository();
+            repo.Stories[0].Title = "Number 1";
+            repo.Stories[1].Title = "Number 2";
+            repo.Stories[2].Title = "Number 0";
+            var FanfictionController = new FanfictionController(repo);
+
+            // Assert precondition
+            Assert.Equal("Number 1", repo.Stories[0].Title);
+
+            // Act
+            FanfictionController.StoryList();
+            
+            // Assert postcondition
+            Assert.NotEqual("Number 1", repo.Stories[0].Title);
+            Assert.Equal("Number 1", repo.Stories[1].Title);
+        }
+
+
+
     }
 }
