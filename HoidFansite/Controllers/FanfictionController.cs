@@ -11,10 +11,12 @@ namespace HoidFansite.Controllers
     public class FanfictionController : Controller
     {
         static IStoryRepository storyRepo;
+        static IReviewRepository reviewRepo;
 
-        public FanfictionController(IStoryRepository r)
+        public FanfictionController(IStoryRepository story, IReviewRepository review)
         {
-            storyRepo = r;
+            storyRepo = story;
+            reviewRepo = review;
         }
 
         public IActionResult StoryList()
@@ -58,17 +60,25 @@ namespace HoidFansite.Controllers
             ViewBag.Fanfic = storyRepo.GetStoryByID(newReview.StoryID);
             if (ModelState.IsValid)
             {
-                ViewBag.Fanfic.Rating
+                // mark the review creation time
                 newReview.ReviewCreated = DateTime.Now;
-                ReviewRepository.AddReview(newReview);
-                return RedirectToAction("StoryList");
+
+                // add the review to the repository may alter this later, creates duplicate data in database
+                reviewRepo.AddReview(newReview);
+
+                // send rating to story for easier display
+                ViewBag.Fanfic.Ratings.Add(newReview.Rating);
+
+                return RedirectToAction("ReviewList");
             }
             return View("ReviewForm");
         }
 
         public IActionResult ReviewList(int id)
         {
-            return View("ReviewList", storyRepo.GetStoryByID(id));
+
+            ViewBag.Story = storyRepo.GetStoryByID(id);
+            return View("ReviewList", reviewRepo.GetReviewsByStory(id));
         }
     }
 }

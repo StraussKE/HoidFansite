@@ -6,11 +6,13 @@ using HoidFansite.Models;
 
 namespace HoidFansite.Repositories
 {
-    public class ReviewRepository
+    public class ReviewRepository : IReviewRepository
     {
         static private List<UserReview> reviews = new List<UserReview>();
 
-        static public void AddReview(UserReview Review)
+        public List<UserReview> Reviews { get { return reviews; } }
+
+        public void AddReview(UserReview Review)
         {
             reviews.Add(Review);
         }

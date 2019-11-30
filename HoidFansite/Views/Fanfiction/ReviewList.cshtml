@@ -1,8 +1,8 @@
-﻿@model UserStory
+﻿@model List<HoidFansite.Models.UserReview>
 
 @{
     Layout = "_Layout";
-    ViewBag.Title = "Reviews: " + Model.Title;
+    ViewData["Title"] = "Reviews for: " + ViewBag.Story.Title;
 }
 
 <!DOCTYPE html>
@@ -13,32 +13,57 @@
 </head>
 <body>
     <div class="panel-body">
-        <h2>Fanfiction</h2>
+        <h4>@ViewBag.Story.Title</h4>
         <table class="table table-sm table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Review Title</th>
-                    <th>Reviewer</th>
-                    <th>Rating</th>
+                    <th colspan="2">Title</th>
+                    <th>Author</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (HoidFansite.Models.UserReview r in Model.Reviews)
-                 {
-                    <tr>
-                        <td>@r.Title</td>
-                        <td>@r.Author</td>
-                        <td>@r.Rating</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">@r.Review</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"></td>
-                    </tr>
-                 }
+                <tr>
+                    <td colspan="2">@ViewBag.Story.Title</td>
+                    <td>@ViewBag.Story.Author</td>
+                </tr>
+                <tr>
+                    <td colspan="3">@ViewBag.Story.Body</td>
+                </tr>
             </tbody>
         </table>
+        @if (Model.Count == 0)
+        {
+            <h4>No Reviews Yet!</h4>
+            <a asp-action="ReviewForm" asp-route-id="@ViewBag.Story.StoryID">Be the first to review!</a>
+        }
+        else
+        {
+            <h4>Reviews</h4>
+            @foreach (HoidFansite.Models.UserReview r in Model)
+            {
+                <table class="table table-sm table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Review Title</th>
+                            <th>Reviewer</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>@r.Title</td>
+                            <td>@r.Author</td>
+                            <td>@r.Rating</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">@r.Review</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+            <a asp-action="ReviewForm" asp-route-id="@ViewBag.Story.StoryID">Add your own review!</a>
+        }
     </div>
 </body>
 </html>

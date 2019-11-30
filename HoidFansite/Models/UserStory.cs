@@ -7,6 +7,7 @@ namespace HoidFansite.Models
 {
     public class UserStory
     {
+        private List<int> ratings = new List<int>();
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please input an author name")]
         [StringLength(20)]
@@ -24,7 +25,7 @@ namespace HoidFansite.Models
 
         public DateTime Created { get; set; }
 
-        private List<int> Ratings { get; }
+        public List<int> Ratings { get { return ratings; } }
 
         public string GetAvgRating()
         {
