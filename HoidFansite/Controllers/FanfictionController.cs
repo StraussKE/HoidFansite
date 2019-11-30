@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using HoidFansite.Models;
 using System.Web;
 using HoidFansite.Repositories;
@@ -45,25 +46,27 @@ namespace HoidFansite.Controllers
             }
         }
 
-        public IActionResult ReviewForm(string id)
+        public IActionResult ReviewForm(int id)
         {
-            ViewBag.Fanfic = new UserStory();
             ViewBag.Fanfic = storyRepo.GetStoryByID(id);
             return View();
         }
 
         [HttpPost]
-        public RedirectToActionResult ReviewForm(UserReview newReview)
+        public IActionResult ReviewForm(UserReview newReview)
         {
+            ViewBag.Fanfic = storyRepo.GetStoryByID(newReview.StoryID);
             if (ModelState.IsValid)
             {
+                ViewBag.Fanfic.Rating
                 newReview.ReviewCreated = DateTime.Now;
                 ReviewRepository.AddReview(newReview);
+                return RedirectToAction("StoryList");
             }
-            return RedirectToAction("StoryList");
+            return View("ReviewForm");
         }
 
-        public IActionResult ReviewList(string id)
+        public IActionResult ReviewList(int id)
         {
             return View("ReviewList", storyRepo.GetStoryByID(id));
         }

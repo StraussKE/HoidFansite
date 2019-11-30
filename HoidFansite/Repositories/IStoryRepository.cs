@@ -12,6 +12,6 @@ namespace HoidFansite.Repositories
 
         void AddStory(UserStory story);
 
-        UserStory GetStoryByID(string ID);
+        UserStory GetStoryByID(int ID);
     }
 }

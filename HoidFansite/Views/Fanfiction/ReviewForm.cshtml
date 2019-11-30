@@ -29,17 +29,14 @@
                 <div class="form-check-label">
                     <label asp-for="Rating">Select a rating!</label>
                 </div>
-                <!--
-                foreach (var rating in Model.Ratings)
-                {
-                    <div class=" form-check form-check-inline">
-                        <input type="radio" asp-for="Rating" value="rating" />Model.RatingTitle[rating - 1]<br />
-                    </div>
-                }
-                 <div class="form-group">
-        <label asp-for="StoryID">Story ID</label>
-        <input class="form-control" asp-for="StoryID" value="ViewBag.Fanfic.StoryID" />
-    </div> -->
+                <div class=" form-check form-check-inline">
+                    <label><input asp-for="Rating" value="1" type="radio" />1 Star</label>
+                    <label><input asp-for="Rating" value="2" type="radio" />2 Star</label>
+                    <label><input asp-for="Rating" value="3" type="radio" checked />3 Star</label>
+                    <label><input asp-for="Rating" value="4" type="radio" />4 Star</label>
+                    <label><input asp-for="Rating" value="5" type="radio" />5 Star</label>
+                </div>
+                <input asp-for="StoryID" value="@ViewBag.Fanfic.StoryID" type="hidden" />
                 <div class="text-center">
                     <button class="btn btn-primary btn-submit" type="submit">
                         Submit Review

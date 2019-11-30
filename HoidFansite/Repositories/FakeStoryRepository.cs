@@ -23,9 +23,9 @@ namespace HoidFansite.Repositories
                 AddDemoStories();
         }
 
-        public UserStory GetStoryByID(string storyID)
+        public UserStory GetStoryByID(int storyID)
         {
-            UserStory story = stories.Find(s => s.StoryID.ToString() == storyID);
+            UserStory story = stories.Find(s => s.StoryID == storyID);
             return story;
         }
 
@@ -33,8 +33,9 @@ namespace HoidFansite.Repositories
         {
             UserStory story = new UserStory()
             {
+                StoryID = stories.Count,
                 Author = "Kaladin",
-                Title = "A flute",
+                Title = "A Flute",
                 Body = "Quite an unusual man, this 'Hoid' is.  He played a song while telling a story, " +
                 "which I swear I could see in the campfire and then he gave me the flute he used in the " +
                 "presentation.  It was most peculiar.  I tried to turn down the flute, for I do not know " +
@@ -44,6 +45,7 @@ namespace HoidFansite.Repositories
 
             story = new UserStory()
             {
+                StoryID = stories.Count,
                 Author = "Dalinar Kohlin",
                 Title = "Respect?",
                 Body = "His tongue is most sharp, this 'Wit' of our king. He cares little for the dignity " +
@@ -55,6 +57,7 @@ namespace HoidFansite.Repositories
 
             story = new UserStory()
             {
+                StoryID = stories.Count,
                 Author = "Eragon",
                 Title = "Uneventful",
                 Body = "I do not know this man you tell tales of. You act like he shows up in every story, " +

@@ -22,9 +22,9 @@ namespace HoidFansite.Repositories
             }
         }
 
-        public UserStory GetStoryByID(string storyID)
+        public UserStory GetStoryByID(int storyID)
         {
-            UserStory story = stories.Find(s => s.StoryID.ToString() == storyID);
+            UserStory story = stories.Find(s => s.StoryID == storyID);
             return story;
         }
     }

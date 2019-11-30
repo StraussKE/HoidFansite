@@ -7,7 +7,6 @@ namespace HoidFansite.Models
 {
     public class UserStory
     {
-        private List<UserReview> reviews = new List<UserReview>();
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please input an author name")]
         [StringLength(20)]
@@ -25,21 +24,21 @@ namespace HoidFansite.Models
 
         public DateTime Created { get; set; }
 
-        public List<UserReview> Reviews { get { return reviews; } }
+        private List<int> Ratings { get; }
 
         public string GetAvgRating()
         {
-            int numReviews = reviews.Count;
+            int numRatings = Ratings.Count;
 
-            if (numReviews == 0)
+            if (numRatings == 0)
                 return "Story not yet rated";
 
             int ratingSum = 0;
-            foreach (UserReview r in reviews)
+            foreach (int r in Ratings)
             {
-                ratingSum += r.Rating;
+                ratingSum += r;
             }
-            return (ratingSum / reviews.Count).ToString();
+            return (ratingSum / Ratings.Count).ToString();
         }
     }
 }
