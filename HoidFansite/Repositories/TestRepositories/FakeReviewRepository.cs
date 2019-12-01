@@ -3,17 +3,13 @@ using HoidFansite.Models;
 
 namespace HoidFansite.Repositories
 {
-    public class ReviewRepository : IReviewRepository
+    public class FakeReviewRepository : IReviewRepository
     {
         static private List<UserReview> reviews = new List<UserReview>();
 
-        public ReviewRepository()
-        {
-            if (reviews.Count == 0)
-                reviews = new FakeReviewRepository().Reviews;
-        }
-
         public List<UserReview> Reviews { get { return reviews; } }
+
+        public FakeReviewRepository() { }
 
         public void AddReview(UserReview Review)
         {
@@ -22,10 +18,10 @@ namespace HoidFansite.Repositories
 
         public List<UserReview> GetReviewsByStory(int ID)
         {
-            List< UserReview> storyMatches = new List<UserReview>();
+            List<UserReview> storyMatches = new List<UserReview>();
             foreach (UserReview r in reviews)
             {
-                if(r.StoryID == ID)
+                if (r.StoryID == ID)
                 {
                     storyMatches.Add(r);
                 }

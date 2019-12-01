@@ -13,6 +13,13 @@ namespace HoidFansite.Controllers
         static IStoryRepository storyRepo;
         static IReviewRepository reviewRepo;
 
+        // for the purpose of testing the story repo
+        public FanfictionController(IStoryRepository story)
+        {
+            storyRepo = story;
+            reviewRepo = new FakeReviewRepository();
+        }
+
         public FanfictionController(IStoryRepository story, IReviewRepository review)
         {
             storyRepo = story;
@@ -63,10 +70,10 @@ namespace HoidFansite.Controllers
                 // mark the review creation time
                 newReview.ReviewCreated = DateTime.Now;
 
-                // add the review to the repository may alter this later, creates duplicate data in database
+                // add the review to the repository
                 reviewRepo.AddReview(newReview);
 
-                // send rating to story for easier display
+                // send rating to story <- duplicates data, but will be useful later if quick rating option iss implemented
                 ViewBag.Fanfic.Ratings.Add(newReview.Rating);
 
                 return RedirectToAction("ReviewList");
@@ -76,7 +83,6 @@ namespace HoidFansite.Controllers
 
         public IActionResult ReviewList(int id)
         {
-
             ViewBag.Story = storyRepo.GetStoryByID(id);
             return View("ReviewList", reviewRepo.GetReviewsByStory(id));
         }

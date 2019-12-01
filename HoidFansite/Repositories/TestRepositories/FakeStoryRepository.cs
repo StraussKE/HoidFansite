@@ -19,7 +19,7 @@ namespace HoidFansite.Repositories
 
         public FakeStoryRepository()
         {
-            if (stories.Count() == 0)
+            if (stories.Count == 0)
                 AddDemoStories();
         }
 
