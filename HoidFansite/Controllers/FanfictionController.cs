@@ -13,13 +13,6 @@ namespace HoidFansite.Controllers
         static IStoryRepository storyRepo;
         static IReviewRepository reviewRepo;
 
-        // for the purpose of testing the story repo
-        public FanfictionController(IStoryRepository story)
-        {
-            storyRepo = story;
-            reviewRepo = new FakeReviewRepository();
-        }
-
         public FanfictionController(IStoryRepository story, IReviewRepository review)
         {
             storyRepo = story;

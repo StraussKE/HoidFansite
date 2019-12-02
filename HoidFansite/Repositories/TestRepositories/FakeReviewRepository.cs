@@ -5,7 +5,7 @@ namespace HoidFansite.Repositories
 {
     public class FakeReviewRepository : IReviewRepository
     {
-        static private List<UserReview> reviews = new List<UserReview>();
+        private List<UserReview> reviews = new List<UserReview>();
 
         public List<UserReview> Reviews { get { return reviews; } }
 

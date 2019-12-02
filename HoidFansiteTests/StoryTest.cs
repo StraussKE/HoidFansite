@@ -14,7 +14,8 @@ namespace HoidFansite.Tests
         {
             // Arrange
             var repo = new FakeStoryRepository();
-            var FanfictionController = new FanfictionController(repo);
+            var revRepo = new FakeReviewRepository(); // not being tested here
+            var FanfictionController = new FanfictionController(repo, revRepo);
 
             var testStory = new UserStory()
             {
@@ -40,10 +41,11 @@ namespace HoidFansite.Tests
         {
             // Arrange
             var repo = new FakeStoryRepository();
+            var revRepo = new FakeReviewRepository(); // not being tested here
             repo.Stories[0].Title = "Number 1";
             repo.Stories[1].Title = "Number 2";
             repo.Stories[2].Title = "Number 0";
-            var FanfictionController = new FanfictionController(repo);
+            var FanfictionController = new FanfictionController(repo, revRepo);
 
             // Assert precondition
             Assert.Equal("Number 1", repo.Stories[0].Title);
