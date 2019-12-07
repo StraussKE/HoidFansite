@@ -82,8 +82,7 @@ namespace HoidFansite.Controllers
         [HttpPost]
         public IActionResult ReviewForm(UserReview newReview)
         {
-            int id = newReview.StoryID;
-            ViewBag.Fanfic = GetStoryByID(id);
+            ViewBag.Fanfic = GetStoryByID(newReview.StoryID);
             if (ModelState.IsValid)
             {
                 // mark the review creation time
@@ -92,7 +91,7 @@ namespace HoidFansite.Controllers
                 // add the review to the repository
                 reviewRepo.AddReview(newReview);
 
-                return RedirectToAction("StoryList");
+                return RedirectToAction("ReviewList",new { id = newReview.StoryID });
             }
             return View("ReviewForm");
         }
