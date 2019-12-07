@@ -83,7 +83,8 @@ namespace HoidFansite.Controllers
         [HttpPost]
         public IActionResult ReviewForm(UserReview newReview)
         {
-            ViewBag.Fanfic = GetStoryByID(newReview.StoryID);
+            int id = newReview.StoryID;
+            ViewBag.Fanfic = GetStoryByID(id);
             if (ModelState.IsValid)
             {
                 // mark the review creation time
@@ -92,7 +93,7 @@ namespace HoidFansite.Controllers
                 // add the review to the repository
                 reviewRepo.AddReview(newReview);
 
-                return RedirectToAction("ReviewList");
+                return RedirectToAction("ReviewList", id);
             }
             return View("ReviewForm");
         }
@@ -104,7 +105,7 @@ namespace HoidFansite.Controllers
         }
 
         // pulls data for a specified story from the database
-        private UserStory GetStoryByID(int storyID)
+        public UserStory GetStoryByID(int storyID)
         {
             UserStory story = storyRepo.Stories.ToList().
                 Find(
@@ -117,7 +118,7 @@ namespace HoidFansite.Controllers
         }
 
         // Gets review list for all reviews of the selected story
-        private List<UserReview> GetReviewsByStoryID(int storyID)
+        public List<UserReview> GetReviewsByStoryID(int storyID)
         {
             List<UserReview> reviews = reviewRepo.Reviews.Where(r => r.StoryID == storyID).ToList();
             return reviews;
