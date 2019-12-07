@@ -62,7 +62,6 @@ namespace HoidFansite.Controllers
         {
             if (ModelState.IsValid)
             {
-                userStory.StoryID = storyRepo.Stories.ToList().Count;
                 storyRepo.AddStory(userStory);
                 return RedirectToAction("StoryList");
             }
