@@ -99,7 +99,7 @@ namespace HoidFansite.Controllers
 
         public IActionResult ReviewList(int id)
         {
-            ViewBag.Fanfic = GetStoryByID(id);
+            ViewBag.Story = GetStoryByID(id);
             return View("ReviewList", GetReviewsByStoryID(id));
         }
 
