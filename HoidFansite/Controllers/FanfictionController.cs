@@ -93,7 +93,7 @@ namespace HoidFansite.Controllers
                 // add the review to the repository
                 reviewRepo.AddReview(newReview);
 
-                return RedirectToAction("ReviewList", id);
+                return RedirectToAction("StoryList");
             }
             return View("ReviewForm");
         }
@@ -107,13 +107,7 @@ namespace HoidFansite.Controllers
         // pulls data for a specified story from the database
         public UserStory GetStoryByID(int storyID)
         {
-            UserStory story = storyRepo.Stories.ToList().
-                Find(
-                delegate (UserStory test)
-                {
-                    return test.StoryID == storyID;
-                }
-                );
+            UserStory story = storyRepo.Stories.ToList().Find(s => s.StoryID == storyID);
             return story;
         }
 
