@@ -32,12 +32,12 @@
                         <td colspan="3">@s.Body</td>
                     </tr>
                     <tr>
-                        @if (ViewBag.AvgRating[@s.StoryID] == 0)
+                        @if (ViewBag.AvgRatings[@s.StoryID] == 0)
                         {
                             <td>Average rating: Story not yet rated!</td>
                         } else
                         {
-                            <td>Average rating: @ViewBag.AvgRating[@s.StoryID]</td>
+                            <td>Average rating: @ViewBag.AvgRatings[@s.StoryID]</td>
                         }
                         <td>
                             <a asp-action="ReviewForm" asp-route-id="@s.StoryID">Review this story!</a>
