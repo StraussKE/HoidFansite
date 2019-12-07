@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace HoidFansite.Models
 {
@@ -18,6 +20,7 @@ namespace HoidFansite.Models
 
         public int Rating { get; set; }
 
+        [ForeignKey("UserStory")]
         public int StoryID { get; set; }
 
         public DateTime ReviewCreated { get; set; }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HoidFansite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191207041441_initial")]
+    [Migration("20191207202300_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

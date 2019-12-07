@@ -20,17 +20,5 @@ namespace HoidFansite.Repositories
             context.Add(story);
             context.SaveChanges();
         }
-
-        public void AddRating(UserStory story, int rating)
-        {
-            context.Stories.ToList().
-                Find(
-                delegate (UserStory test)
-                {
-                    return test == story;
-                }
-                ).Ratings.Add(rating);
-            context.SaveChanges();
-        }
     }
 }

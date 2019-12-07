@@ -19,22 +19,26 @@
             <table class="table table-sm table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th colspan="2">Title</th>
-                        <th>Author</th>
+                        <th width="50%">Title</th>
+                        <th colspan="2">Author</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="2">@s.Title</td>
-                        <td>@s.Author</td>
+                        <td width="50%">@s.Title</td>
+                        <td colspan="2">@s.Author</td>
                     </tr>
                     <tr>
                         <td colspan="3">@s.Body</td>
                     </tr>
                     <tr>
-                        <td>
-                            Average rating: @s.GetAvgRating()
-                        </td>
+                        @if (ViewBag.AvgRating[@s.StoryID] == 0)
+                        {
+                            <td>Average rating: Story not yet rated!</td>
+                        } else
+                        {
+                            <td>Average rating: @ViewBag.AvgRating[@s.StoryID]</td>
+                        }
                         <td>
                             <a asp-action="ReviewForm" asp-route-id="@s.StoryID">Review this story!</a>
                         </td>

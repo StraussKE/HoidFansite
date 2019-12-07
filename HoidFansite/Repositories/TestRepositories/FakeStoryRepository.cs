@@ -46,16 +46,5 @@ namespace HoidFansite.Repositories
         {
             Stories.ToList().Add(story);
         }
-
-        public void AddRating(UserStory story, int rating)
-        {
-            foreach(UserStory s in Stories)
-            {
-                if (s == story)
-                {
-                    s.Ratings.Add(rating);
-                }
-            }
-        }
     }   
 }

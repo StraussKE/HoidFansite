@@ -24,7 +24,31 @@ namespace HoidFansite.Controllers
         {
             List<UserStory> stories = storyRepo.Stories.ToList();
             stories.Sort((s1, s2) => string.Compare(s1.Title, s2.Title, StringComparison.Ordinal));
+            ViewBag.AvgRatings = AvgRating();
             return View(stories);
+        }
+
+        private Dictionary<int, int> AvgRating()
+        {
+            Dictionary<int, int> sIdCommaAvgRate = new Dictionary<int, int>();
+
+            foreach (UserStory s in storyRepo.Stories)
+            {
+                int ratingSum = 0;
+                List<UserReview> revList = GetReviewsByStoryID(s.StoryID);
+                if (revList.Count == 0)
+                {
+                    sIdCommaAvgRate.Add(s.StoryID, 0);
+                }
+                else {
+                    foreach (UserReview r in revList)
+                    {
+                        ratingSum += r.Rating;
+                    }
+                    sIdCommaAvgRate.Add(s.StoryID, ratingSum / revList.Count);
+                }
+            }
+            return sIdCommaAvgRate;
         }
 
         [HttpGet]
@@ -68,10 +92,7 @@ namespace HoidFansite.Controllers
                 // add the review to the repository
                 reviewRepo.AddReview(newReview);
 
-                // send rating to story <- duplicates data, but will be useful later if quick rating option iss implemented
-                storyRepo.AddRating(ViewBag.Fanfic, newReview.Rating);
-
-                return RedirectToAction("ReviewList", ViewBag.Fanfic.StoryID);
+                return RedirectToAction("ReviewList");
             }
             return View("ReviewForm");
         }
@@ -83,7 +104,7 @@ namespace HoidFansite.Controllers
         }
 
         // pulls data for a specified story from the database
-        public UserStory GetStoryByID(int storyID)
+        private UserStory GetStoryByID(int storyID)
         {
             UserStory story = storyRepo.Stories.ToList().
                 Find(
@@ -96,7 +117,7 @@ namespace HoidFansite.Controllers
         }
 
         // Gets review list for all reviews of the selected story
-        public List<UserReview> GetReviewsByStoryID(int storyID)
+        private List<UserReview> GetReviewsByStoryID(int storyID)
         {
             List<UserReview> reviews = reviewRepo.Reviews.Where(r => r.StoryID == storyID).ToList();
             return reviews;

@@ -7,8 +7,6 @@ namespace HoidFansite.Models
 {
     public class UserStory
     {
-        private List<int> ratings = new List<int>();
-
         [Key]
         public int StoryID { get; set; }
 
@@ -25,22 +23,5 @@ namespace HoidFansite.Models
         public string Body { get; set; }
 
         public DateTime Created { get; set; }
-
-        public List<int> Ratings { get { return ratings; } }
-
-        public string GetAvgRating()
-        {
-            int numRatings = Ratings.Count;
-
-            if (numRatings == 0)
-                return "Story not yet rated";
-
-            int ratingSum = 0;
-            foreach (int r in Ratings)
-            {
-                ratingSum += r;
-            }
-            return (ratingSum / Ratings.Count).ToString();
-        }
     }
 }

@@ -11,7 +11,5 @@ namespace HoidFansite.Repositories
         IQueryable<UserStory> Stories { get; }
 
         void AddStory(UserStory story);
-
-        void AddRating(UserStory story, int rating);
     }
 }
