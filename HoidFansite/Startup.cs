@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using HoidFansite.Repositories;
+using HoidFansite.Models;
 
 namespace HoidFansite
 {
@@ -32,12 +34,15 @@ namespace HoidFansite
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             // Inject our repositories into our controllers
-            services.AddTransient<IStoryRepository, StoryRepository>();
-            services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddTransient<IStoryRepository, EFStoryRepository>();
+            services.AddTransient<IReviewRepository, EFReviewRepository>();
+            services.AddMvc();
+
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +59,9 @@ namespace HoidFansite
                 app.UseHsts();
             }
 
+            app.UseDeveloperExceptionPage();
             app.UseHttpsRedirection();
+            app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 

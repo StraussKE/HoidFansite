@@ -8,10 +8,10 @@ namespace HoidFansite.Repositories
 {
     public interface IStoryRepository
     {
-        List<UserStory> Stories { get; }
+        IQueryable<UserStory> Stories { get; }
 
         void AddStory(UserStory story);
 
-        UserStory GetStoryByID(int ID);
+        void AddRating(UserStory story, int rating);
     }
 }

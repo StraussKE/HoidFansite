@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using HoidFansite.Controllers;
 using HoidFansite.Models;
 using HoidFansite.Repositories;
+using System.Linq;
 using Xunit;
 
 namespace HoidFansite.Tests
@@ -96,7 +97,7 @@ namespace HoidFansite.Tests
             
             // Assert
             Assert.Equal("Katie",
-                reviewRepo.Reviews[reviewRepo.Reviews.Count - 1].Author);
+                reviewRepo.Reviews[reviewRepo.Reviews.ToList().Count - 1].Author);
             Assert.Equal("Testing",
                 reviewRepo.Reviews[reviewRepo.Reviews.Count - 1].Title);
             Assert.Equal("This is a test review",

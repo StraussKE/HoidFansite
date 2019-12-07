@@ -9,6 +9,9 @@ namespace HoidFansite.Models
     {
         private List<int> ratings = new List<int>();
 
+        [Key]
+        public int StoryID { get; set; }
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please input an author name")]
         [StringLength(20)]
         public string Author { get; set ; }
@@ -20,8 +23,6 @@ namespace HoidFansite.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "The story cannot be blank")]
         [StringLength(3000, MinimumLength = 20)]
         public string Body { get; set; }
-
-        public int StoryID { get; set; }
 
         public DateTime Created { get; set; }
 

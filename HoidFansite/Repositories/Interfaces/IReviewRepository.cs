@@ -8,10 +8,8 @@ namespace HoidFansite.Repositories
 {
     public interface IReviewRepository
     {
-        List<UserReview> Reviews { get; }
+        IQueryable<UserReview> Reviews { get; }
 
         void AddReview(UserReview review);
-
-        List<UserReview> GetReviewsByStory(int ID);
     }
 }

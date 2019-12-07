@@ -1,32 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using HoidFansite.Models;
 
 namespace HoidFansite.Repositories
 {
     public class FakeReviewRepository : IReviewRepository
     {
-        private List<UserReview> reviews = new List<UserReview>();
+        public IQueryable<UserReview> Reviews => new List<UserReview>
+        {
 
-        public List<UserReview> Reviews { get { return reviews; } }
+        }.AsQueryable<UserReview>();
 
         public FakeReviewRepository() { }
 
-        public void AddReview(UserReview Review)
+        public void AddReview(UserReview review)
         {
-            reviews.Add(Review);
-        }
-
-        public List<UserReview> GetReviewsByStory(int ID)
-        {
-            List<UserReview> storyMatches = new List<UserReview>();
-            foreach (UserReview r in reviews)
-            {
-                if (r.StoryID == ID)
-                {
-                    storyMatches.Add(r);
-                }
-            }
-            return storyMatches;
+            Reviews.ToList().Add(review);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿@model List<HoidFansite.Models.UserReview>
+﻿@model List<UserReview>
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Reviews for: " + ViewBag.Story.Title;
+    ViewData["Title"] = "Reviews for: " + ViewBag.Fanfic.Title;
 }
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="panel-body">
-        <h4>@ViewBag.Story.Title</h4>
+        <h4>@ViewBag.Fanfic.Title</h4>
         <table class="table table-sm table-striped table-bordered">
             <thead>
                 <tr>
@@ -23,23 +23,23 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="2">@ViewBag.Story.Title</td>
-                    <td>@ViewBag.Story.Author</td>
+                    <td colspan="2">@ViewBag.Fanfic.Title</td>
+                    <td>@ViewBag.Fanfic.Author</td>
                 </tr>
                 <tr>
-                    <td colspan="3">@ViewBag.Story.Body</td>
+                    <td colspan="3">@ViewBag.Fanfic.Body</td>
                 </tr>
             </tbody>
         </table>
-        @if (Model.Count == 0)
+        @if (Model.Count() == 0)
         {
             <h4>No Reviews Yet!</h4>
-            <a asp-action="ReviewForm" asp-route-id="@ViewBag.Story.StoryID">Be the first to review!</a>
+            <a asp-action="ReviewForm" asp-route-id="@ViewBag.Fanfic.StoryID">Be the first to review!</a>
         }
         else
         {
             <h4>Reviews</h4>
-            @foreach (HoidFansite.Models.UserReview r in Model)
+            @foreach (UserReview r in Model)
             {
                 <table class="table table-sm table-striped table-bordered">
                     <thead>
@@ -62,7 +62,7 @@
                     </tbody>
                 </table>
             }
-            <a asp-action="ReviewForm" asp-route-id="@ViewBag.Story.StoryID">Add your own review!</a>
+            <a asp-action="ReviewForm" asp-route-id="@ViewBag.Fanfic.StoryID">Add your own review!</a>
         }
     </div>
 </body>

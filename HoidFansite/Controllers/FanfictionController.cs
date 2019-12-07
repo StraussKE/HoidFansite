@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using HoidFansite.Models;
@@ -21,7 +22,7 @@ namespace HoidFansite.Controllers
 
         public IActionResult StoryList()
         {
-            List<UserStory> stories = storyRepo.Stories;
+            List<UserStory> stories = storyRepo.Stories.ToList();
             stories.Sort((s1, s2) => string.Compare(s1.Title, s2.Title, StringComparison.Ordinal));
             return View(stories);
         }
@@ -37,7 +38,7 @@ namespace HoidFansite.Controllers
         {
             if (ModelState.IsValid)
             {
-                userStory.StoryID = storyRepo.Stories.Count;
+                userStory.StoryID = storyRepo.Stories.ToList().Count;
                 storyRepo.AddStory(userStory);
                 return RedirectToAction("StoryList");
             }
@@ -48,16 +49,17 @@ namespace HoidFansite.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult ReviewForm(int id)
         {
-            ViewBag.Fanfic = storyRepo.GetStoryByID(id);
+            ViewBag.Fanfic = GetStoryByID(id);
             return View();
         }
 
         [HttpPost]
         public IActionResult ReviewForm(UserReview newReview)
         {
-            ViewBag.Fanfic = storyRepo.GetStoryByID(newReview.StoryID);
+            ViewBag.Fanfic = GetStoryByID(newReview.StoryID);
             if (ModelState.IsValid)
             {
                 // mark the review creation time
@@ -67,17 +69,37 @@ namespace HoidFansite.Controllers
                 reviewRepo.AddReview(newReview);
 
                 // send rating to story <- duplicates data, but will be useful later if quick rating option iss implemented
-                ViewBag.Fanfic.Ratings.Add(newReview.Rating);
+                storyRepo.AddRating(ViewBag.Fanfic, newReview.Rating);
 
-                return RedirectToAction("ReviewList");
+                return RedirectToAction("ReviewList", ViewBag.Fanfic.StoryID);
             }
             return View("ReviewForm");
         }
 
         public IActionResult ReviewList(int id)
         {
-            ViewBag.Story = storyRepo.GetStoryByID(id);
-            return View("ReviewList", reviewRepo.GetReviewsByStory(id));
+            ViewBag.Fanfic = GetStoryByID(id);
+            return View("ReviewList", GetReviewsByStoryID(id));
+        }
+
+        // pulls data for a specified story from the database
+        public UserStory GetStoryByID(int storyID)
+        {
+            UserStory story = storyRepo.Stories.ToList().
+                Find(
+                delegate (UserStory test)
+                {
+                    return test.StoryID == storyID;
+                }
+                );
+            return story;
+        }
+
+        // Gets review list for all reviews of the selected story
+        public List<UserReview> GetReviewsByStoryID(int storyID)
+        {
+            List<UserReview> reviews = reviewRepo.Reviews.Where(r => r.StoryID == storyID).ToList();
+            return reviews;
         }
     }
 }

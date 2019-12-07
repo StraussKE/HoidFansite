@@ -5,6 +5,9 @@ namespace HoidFansite.Models
 {
     public class UserReview
     {
+        [Key]
+        public int ReviewId { get; set; }
+
         public string Author { get; set; } = "Anonymous";
 
         [Required(ErrorMessage = "Please enter review title")]
