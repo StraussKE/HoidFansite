@@ -27,7 +27,7 @@ namespace HoidFansite.Tests
 
             // Act
             FanfictionController.StoryForm(testStory);
-            
+
             // Assert
             Assert.Equal("Katie",
                 repo.Stories[repo.Stories.Count - 1].Author);
