@@ -10,7 +10,7 @@ namespace HoidFansite.Repositories
     {
         private static List<Link> links = new List<Link>();
 
-        public static List<Link> Links { get; }
+        public static List<Link> Links { get { return links; } }
 
         static LinkRepository()
         {
